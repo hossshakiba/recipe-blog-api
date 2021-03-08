@@ -2,4 +2,4 @@ from django.apps import AppConfig
 
 
 class UsersConfig(AppConfig):
-    name = 'recipe.users'
+    name = 'recipe_blog.users'

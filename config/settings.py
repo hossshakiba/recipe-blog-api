@@ -42,9 +42,11 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # local
-    'recipe.users.apps.UsersConfig',
+    'recipe_blog.users.apps.UsersConfig',
 
 ]
+
+AUTH_USER_MODEL="users.User"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -93,16 +95,10 @@ DATABASES = {
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'OPTIONS': {
+            'min_length': 6,
+        }
     },
 ]
 
