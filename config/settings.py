@@ -43,10 +43,24 @@ INSTALLED_APPS = [
 
     # local
     'recipe_blog.users.apps.UsersConfig',
+    'recipe_blog.authentication.apps.AuthenticationConfig',
 
 ]
 
 AUTH_USER_MODEL = "users.User"
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [ 
+        'rest_framework.permissions.IsAuthenticated',
+    ],
+    "DEFAULT_PARSER_CLASSES": [
+        "rest_framework.parsers.JSONParser", 
+    ],
+    "DEFAULT_AUTHENTICATION_CLASSES": [                               
+        "rest_framework_simplejwt.authentication.JWTAuthentication",  
+        "rest_framework.authentication.SessionAuthentication",
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

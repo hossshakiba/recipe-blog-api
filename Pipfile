@@ -10,6 +10,7 @@ markdown = "*"
 django-filter = "*"
 psycopg2-binary = "*"
 flake8 = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
