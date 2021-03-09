@@ -11,7 +11,7 @@ class User(AbstractUser):
     email = models.EmailField(_("email"), max_length=254, unique=True)
     is_special = models.DateTimeField(_("special member until"), default=timezone.now)
 
-    REQUIRED_FIELDS = ['email',]
+    REQUIRED_FIELDS = ['email', ]
 
     def is_special_member(self):
         """
@@ -21,4 +21,3 @@ class User(AbstractUser):
         if self.is_superuser or self.is_staff:
             return True
         return self.is_special > timezone.now()
-
