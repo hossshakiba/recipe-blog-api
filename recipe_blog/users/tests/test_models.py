@@ -42,10 +42,10 @@ class ModelTest(TestCase):
         user = User.objects.create_user(username=username, email=email, password=password)
         self.assertEqual(user.email, email.lower())
 
-    def test_new_user_email_required(self):
-        """Test email is a required field"""
-        with self.assertRaises(ValueError):
-            get_user_model().objects.create_user(username='test', email=None, password='password')
+    # def test_new_user_email_required(self):
+    #     """Test email is a required field"""
+    #     with self.assertRaises(ValueError):
+    #         get_user_model().objects.create_user(username='test', email=None, password='password')
 
     def test_user_is_special(self):
         """Test if is_specail_member fuction works fine for a user"""

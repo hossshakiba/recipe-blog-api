@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class IsCreator(permissions.BasePermission):
     """
     Object-level permission to only allow creators of an object to edit/delete it.
