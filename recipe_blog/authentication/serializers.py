@@ -17,7 +17,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         """Create a new user with validated data"""
+        password = validated_data['password']
+        if len(password) < 6:
+            raise serializers.ValidationError(
+                "This password is too short. It must contain at least 6 character.")
         user = User(**validated_data)
-        user.set_password(validated_data['password'])
+        user.set_password(password)
         user.save()
         return user
