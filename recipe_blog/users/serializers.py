@@ -3,7 +3,7 @@ from rest_framework import serializers
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
-  
+
     class Meta:
         model = get_user_model()
         fields = ('username', 'email', 'special member', 'special member until:')
@@ -11,10 +11,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'read_only': True,
             'format': 'date: %d-%m-%Y time: %H:%M:%S',
             'source': 'is_special'},
-            'special member': {
-              'source': 'is_special_member'
-            },
-            }
+            'special member': {'source': 'is_special_member'},
+        }
 
     def __init__(self, *args, **kwargs):
         """Delete special member until: field if user is not special"""
