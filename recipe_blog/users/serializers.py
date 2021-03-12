@@ -6,8 +6,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
   
     class Meta:
         model = get_user_model()
-        # fields = ('username', 'email', 'special member', 'is special user until:')
-        extra_kwargs = {'is special user until:': {
+        fields = ('username', 'email', 'special member', 'special member until:')
+        extra_kwargs = {'special member until:': {
             'read_only': True,
             'format': 'date: %d-%m-%Y time: %H:%M:%S',
             'source': 'is_special'},
@@ -17,10 +17,8 @@ class UserProfileSerializer(serializers.ModelSerializer):
             }
 
     def __init__(self, *args, **kwargs):
-        """Append is_special to fields if user is special"""
+        """Delete special member until: field if user is not special"""
         super().__init__(*args, **kwargs)
-        user = self.context['request'].user
-        if user.is_special_member():
-            self.fields = ('username', 'email', 'special member')
-        else:
-            self.fields = ('username', 'email', 'special member', 'is special user until:')
+
+        if not self.instance.is_special_member():
+            del self.fields['special member until:']
