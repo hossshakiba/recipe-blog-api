@@ -1,7 +1,7 @@
 from rest_framework import status
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework.permissions import AllowAny
+
 from .serializers import (
     UserRegistrationSerializer,
 )
@@ -9,7 +9,6 @@ from .serializers import (
 
 class UserRegistrationView(APIView):
     serializer_class = UserRegistrationSerializer
-    permission_classes = (AllowAny, )
 
     def post(self, request):
         serializer = self.serializer_class(data=request.data)
@@ -22,7 +21,7 @@ class UserRegistrationView(APIView):
             response = {
                 'success': True,
                 'statusCode': status_code,
-                'message': 'User successfully registered!',
+                'message': 'You are successfully registered!',
                 'user': serializer.data
             }
 

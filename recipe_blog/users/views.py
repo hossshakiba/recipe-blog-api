@@ -10,6 +10,6 @@ from .permissions import IsCreator
 class UserProfileView(generics.RetrieveUpdateDestroyAPIView):
     queryset = get_user_model().objects.all()
     serializer_class = UserProfileSerializer
-    permission_classes = (IsAuthenticated, IsCreator)
+    permission_classes = (IsCreator, )
     lookup_field = 'username'
     
