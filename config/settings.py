@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'recipe_blog.users.apps.UsersConfig',
     'recipe_blog.authentication.apps.AuthenticationConfig',
     'recipe_blog.categories.apps.CategoriesConfig',
+    'recipe_blog.ingredients.apps.IngredientsConfig',
 
 ]
 

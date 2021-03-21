@@ -21,4 +21,5 @@ urlpatterns = [
     path('api/auth/', include('recipe_blog.authentication.urls')),
     path('api/accounts/', include('recipe_blog.users.urls')),
     path('api/categories/', include('recipe_blog.categories.urls')),
+    path('api/ingredients/', include('recipe_blog.ingredients.urls')),
 ]
