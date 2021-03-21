@@ -9,3 +9,6 @@ class IngredientViewSet(viewsets.ModelViewSet):
     serializer_class = IngredientSerializer
     permission_classes = (IsCreatorOrReadOnly, )
 
+    def perform_create(self, serializer):
+        """Create a new ingredient"""
+        serializer.save(user=self.request.user)

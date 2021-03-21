@@ -8,3 +8,4 @@ class IngredientSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ingredient
         fields = ('name', 'user')
+        read_only_fields = ('user',)
