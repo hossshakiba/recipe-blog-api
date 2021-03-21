@@ -11,6 +11,7 @@ django-filter = "*"
 psycopg2-binary = "*"
 flake8 = "*"
 djangorestframework-simplejwt = "*"
+pillow = "*"
 
 [dev-packages]
 
