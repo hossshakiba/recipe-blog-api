@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -22,4 +24,6 @@ urlpatterns = [
     path('api/accounts/', include('recipe_blog.users.urls')),
     path('api/categories/', include('recipe_blog.categories.urls')),
     path('api/ingredients/', include('recipe_blog.ingredients.urls')),
-]
+    path('api/recipes/', include('recipe_blog.recipe.urls')),
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
