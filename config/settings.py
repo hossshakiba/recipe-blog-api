@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # 3rd party
     'rest_framework',
+    'django_filters',
 
     # local
     'recipe_blog.users.apps.UsersConfig',
@@ -57,6 +58,13 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ],
+    'DEFAULT_FILTER_BACKENDS': [
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ],
+    'SEARCH_PARAM': 'q',
+    'ORDERING_PARAM': 'o'
 }
 
 # Configure the JWT settings
