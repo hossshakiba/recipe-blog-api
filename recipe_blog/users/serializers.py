@@ -25,7 +25,8 @@ class UserProfileSerializer(UserListSerializer):
         read_only_fields = ('special member until:', )
 
     def __init__(self, *args, **kwargs):
-        """Delete 'special member until:' field if user is not special"""
+        """Users can see only their personal special membership duration"""
         super().__init__(*args, **kwargs)
-        if not self.instance.is_special_member():
+        user = self.context['request'].user
+        if self.instance != user:
             del self.fields['special member until:']
