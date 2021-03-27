@@ -30,12 +30,12 @@ class CategoriesAPITest(TestCase):
 
     def test_create_category(self):
         """Test create a new category"""
-        payload = {'name': 'test', 'slug': 'test'}
+        payload = {'name': 'New'}
         res = self.client.post(CATEGORY_URL, payload)
-
+        
         exists = Category.objects.filter(
             name=payload['name'],
-            slug=payload['slug']
+            slug='new',
         ).exists()
 
         self.assertTrue(exists)
@@ -50,13 +50,13 @@ class CategoriesAPITest(TestCase):
 
     def test_update_category(self):
         """Test updating a category"""
-        payload = {'name': 'test', 'slug': 'test'}
+        payload = {'name': 'test'}
         self.client.post(CATEGORY_URL, payload)
-        
-        res = self.client.put(CATEGORY_URL + 'test/', {'name': 'newname', 'slug': 'NEWNAME'})
 
-        self.assertEqual(res.data['name'], 'newname')
-        self.assertEqual(res.data['slug'], 'newname')
+        res = self.client.put(CATEGORY_URL + 'test/', {'name': 'new'})
+
+        self.assertEqual(res.data['name'], 'New')
+        self.assertEqual(res.data['slug'], 'new')
         self.assertEqual(res.status_code, status.HTTP_200_OK)
     
 
