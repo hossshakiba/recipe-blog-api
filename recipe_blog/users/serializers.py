@@ -4,6 +4,7 @@ from rest_framework import serializers
 
 class UserListSerializer(serializers.ModelSerializer):
     recipe_count = serializers.SerializerMethodField()
+    
     class Meta:
         model = get_user_model()
         fields = ('username', 'email', 'recipe_count', 'is_special_member')
@@ -19,8 +20,9 @@ class UserProfileSerializer(UserListSerializer):
         fields = ('username', 'email', 'recipe_count', 'is_special_member', 'special member until:')
         extra_kwargs = {
             'special member until:': {
-            'format': 'date: %d-%m-%Y time: %H:%M:%S',
-            'source': 'is_special'},
+                'format': 'date: %d-%m-%Y time: %H:%M:%S',
+                'source': 'is_special'
+            },
         }
         read_only_fields = ('special member until:', )
 

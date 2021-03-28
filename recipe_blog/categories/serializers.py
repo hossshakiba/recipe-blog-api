@@ -36,7 +36,7 @@ class CategorySerializer(serializers.ModelSerializer):
         """
         name = data.capitalize()
         exists = Category.objects.filter(
-            name = name
+            name=name
         ).exists()
         if exists:
             raise serializers.ValidationError("category with this name already exists.")

@@ -3,7 +3,6 @@ from rest_framework import permissions
 
 class IsCreatorOrReadOnly(permissions.BasePermission):
     
-
     def has_permission(self, request, view):
         """
         Authenticated allowed to create ingredients on List page.

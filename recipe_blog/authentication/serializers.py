@@ -1,5 +1,7 @@
 from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
+
 
 User = get_user_model()
 
@@ -26,10 +28,11 @@ class UserRegistrationSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
+
 class ChangePasswordSerializer(serializers.Serializer):
     """
     Serializer for password change endpoint.
     """
-    old_password = serializers.CharField(required=True, write_only=True)
-    new_password = serializers.CharField(required=True, write_only=True)
-    # write_only_fields = ('old_password', 'new_password')
+    old_password = serializers.CharField(required=True, style={"input_type": "password"})
+    new_password = serializers.CharField(required=True, style={"input_type": "password"})
+

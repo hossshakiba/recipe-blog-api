@@ -4,6 +4,7 @@ from .models import Recipe
 from .serializers import RecipeSerializer
 from .permissions import IsCreatorOrReadOnly
 
+
 class RecipeViewSet(viewsets.ModelViewSet):
     queryset = Recipe.objects.all()
     serializer_class = RecipeSerializer

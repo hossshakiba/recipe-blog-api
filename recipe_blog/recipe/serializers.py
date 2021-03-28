@@ -1,4 +1,3 @@
-from recipe_blog.recipe.models import Recipe
 from rest_framework import serializers
 
 from .models import Recipe
