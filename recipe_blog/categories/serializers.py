@@ -1,9 +1,8 @@
-from unittest.case import expectedFailure
-from rest_framework import serializers
 from django.utils.text import slugify
 
-from .models import Category
+from rest_framework import serializers
 
+from .models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
