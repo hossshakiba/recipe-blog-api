@@ -6,13 +6,14 @@ from rest_framework.test import APIClient
 
 from recipe_blog.categories.models import Category
 
-TOKEN_URL = reverse('auth:token_obtain_pair')
+
 CATEGORY_URL = reverse('categories-list')
 
 
 class CategoriesAPITest(TestCase):
 
     def setUp(self):
+        """Create superuser & authenticate it"""
         payload = {
             'username': 'superuser',
             'email': 'super@test.com',
