@@ -8,7 +8,7 @@ from rest_framework import status
 CREATE_USER_URL = reverse('auth:register')
 TOKEN_URL = reverse('auth:token_obtain_pair')
 REFRESH_URL = reverse('auth:token_refresh')
-
+CHANGE_PASSWORD_URL = reverse('auth:change_password')
 
 def create_user(**params):
     return get_user_model().objects.create_user(**params)
@@ -113,3 +113,22 @@ class AuthenticationTest(TestCase):
         self.assertNotIn('access', res.data)
         self.assertNotIn('refresh', res.data)
         self.assertEqual(res.status_code, status.HTTP_401_UNAUTHORIZED)
+
+    def test_user_change_password(self):
+        """Test that user can change password"""
+        payload = {
+            'username': 'testuser',
+            'email': 'test@test.com',
+            'password': 'passs',
+        }
+        self.user = create_user(**payload)
+        self.client = APIClient()
+        self.client.force_authenticate(self.user)
+
+        payload = {
+            'old_password': 'passs',
+            'new_password': 'newpass'
+        }
+        res = self.client.put(CHANGE_PASSWORD_URL, payload)
+
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
