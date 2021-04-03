@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # 3rd party
     'rest_framework',
     'django_filters',
+    'drf_yasg',
 
     # local
     'recipe_blog.users.apps.UsersConfig',

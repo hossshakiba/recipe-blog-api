@@ -12,6 +12,7 @@ psycopg2-binary = "*"
 flake8 = "*"
 djangorestframework-simplejwt = "*"
 pillow = "*"
+drf-yasg = "*"
 
 [dev-packages]
 

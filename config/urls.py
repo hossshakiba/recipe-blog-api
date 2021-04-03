@@ -17,6 +17,21 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
+
+
+schema_view = get_schema_view(
+    openapi.Info(
+        title="Recipe Blog API",
+        default_version='v1',
+        description="A DRF based recipe blog using TDD, Docker & Pipenv.",
+        contact=openapi.Contact(email="hossshakiba@outlook.com"),
+        license=openapi.License(name="MIT"),
+    ),
+    public=True,
+)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -25,5 +40,7 @@ urlpatterns = [
     path('api/categories/', include('recipe_blog.categories.urls')),
     path('api/ingredients/', include('recipe_blog.ingredients.urls')),
     path('api/recipes/', include('recipe_blog.recipe.urls')),
+    path('', schema_view.with_ui('swagger',
+                                 cache_timeout=0), name='schema-swagger-ui'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
