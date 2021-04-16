@@ -3,18 +3,20 @@ from rest_framework import serializers
 
 
 class UserListSerializer(serializers.ModelSerializer):
-    recipe_count = serializers.SerializerMethodField()
+    """
+    Serializer for users list-view
+    """
+    recipe_count = serializers.ReadOnlyField(source='recipe_set.count')
     
     class Meta:
         model = get_user_model()
         fields = ('username', 'email', 'recipe_count', 'is_special_member')
-        read_only_fields = ('recipe_count', )
-
-    def get_recipe_count(self, obj):
-        return obj.recipe_set.count()
     
     
 class UserProfileSerializer(UserListSerializer):
+    """
+    Serializer for users' profiles
+    """
     class Meta:
         model = get_user_model()
         fields = ('username', 'email', 'recipe_count', 'is_special_member', 'special member until:')
