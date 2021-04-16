@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework import viewsets
+from rest_framework.exceptions import MethodNotAllowed
 
 from .serializers import UserListSerializer, UserProfileSerializer
 from .permissions import IsCreator
@@ -17,4 +18,7 @@ class UserViewSet(viewsets.ModelViewSet):
         if self.action == 'list':
             return UserListSerializer
         return UserProfileSerializer
-        
+    
+    def create(self, request):
+        """Disable create/POST method in users list view"""
+        raise MethodNotAllowed(method='POST')

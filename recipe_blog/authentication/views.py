@@ -11,6 +11,9 @@ from .serializers import (
 
 
 class UserRegistrationView(APIView):
+    """
+    An endpoint for registering a new user.
+    """
     serializer_class = UserRegistrationSerializer
 
     def post(self, request):
