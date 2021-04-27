@@ -24,7 +24,7 @@ class Recipe(models.Model):
     time_minutes = models.PositiveIntegerField()
     categories = models.ManyToManyField(Category)
     ingredients = models.ManyToManyField(Ingredient)
-    image = models.ImageField(null=True, upload_to=recipe_image_file_path)
+    image = models.ImageField(upload_to=recipe_image_file_path, blank=True)
 
     def __str__(self):
         return self.title
