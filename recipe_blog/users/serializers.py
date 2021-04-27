@@ -17,20 +17,19 @@ class UserProfileSerializer(UserListSerializer):
     """
     Serializer for users' profiles
     """
+    special_member_until = serializers.DateTimeField(
+        source='is_special', 
+        format='date: %d-%m-%Y time: %H:%M:%S',
+        read_only=True)
+
     class Meta:
         model = get_user_model()
-        fields = ('username', 'email', 'recipe_count', 'is_special_member', 'special member until:')
-        extra_kwargs = {
-            'special member until:': {
-                'format': 'date: %d-%m-%Y time: %H:%M:%S',
-                'source': 'is_special'
-            },
-        }
-        read_only_fields = ('special member until:', )
+        fields = ('username', 'email', 'recipe_count', 'is_special_member', 'special_member_until')
+
 
     def __init__(self, *args, **kwargs):
         """Users can see only their personal special membership duration"""
         super().__init__(*args, **kwargs)
         user = self.context['request'].user
         if self.instance != user:
-            del self.fields['special member until:']
+            del self.fields['special_member_until']
