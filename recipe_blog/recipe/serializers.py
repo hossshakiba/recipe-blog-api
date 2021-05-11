@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+
 from rest_framework import serializers
 
 from .models import Recipe
@@ -30,6 +32,7 @@ class ListingField(serializers.RelatedField):
 class RecipeSerializer(serializers.ModelSerializer):
     """Serializer for recipes"""
     url = serializers.HyperlinkedIdentityField(view_name='recipes-detail')
+    author = serializers.ReadOnlyField(source='author.username')
     categories = ListingField(queryset=Category.objects.all(), many=True)
     ingredients = ListingField(queryset=Ingredient.objects.all(), many=True)
 
