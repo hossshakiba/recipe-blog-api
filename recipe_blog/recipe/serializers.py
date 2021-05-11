@@ -15,8 +15,8 @@ class ListingField(serializers.RelatedField):
     
     def to_internal_value(self, data):
         """Validate the unvalidated coming data."""
-        model = self.queryset.model
         try:
+            model = self.queryset.model
             try:
                 return model.objects.get(name=data)
             except KeyError:
@@ -32,6 +32,8 @@ class RecipeSerializer(serializers.ModelSerializer):
     url = serializers.HyperlinkedIdentityField(view_name='recipes-detail')
     categories = ListingField(queryset=Category.objects.all(), many=True)
     ingredients = ListingField(queryset=Ingredient.objects.all(), many=True)
+
+
     class Meta:
         model = Recipe
         fields = (
